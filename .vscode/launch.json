@@ -1,0 +1,63 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "NODE Current   JS Program",
+            "program": "${file}",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+
+        /*
+        这里需要注意的是Debugger for Chrom 默认生成的lanuch.json文件中，只指定了url访问路径， 如果你的项目未发布到本地web服务器当中，则无法通过配置的url路径访问html页面，因此只能通过file属性指定首页文件访问
+
+        或者将项目目录放到web服务器目录下，配置正确的url去访问，例如将helloword工程放到apache服务器的htdocs目录下，在launch.json文件中 指定正确的url访问路径 http://localhost:8080/site/helloword/index.html， 即可按快捷键F5进行自动运行调试。
+        */
+        {
+            "name": "使用本机 Chrome 调试",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${file}",
+            "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", //改成您的 Chrome 安装路径        
+            "runtimeArgs": ["--allow-file-access-from-files","--autoplay-policy=0"],   
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}",
+            // "userDataDir": "${tmpdir}",
+            "port": 9222
+        },
+
+        /*     {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open js-test.html",
+            "file": "d:\\Code_Program\\JS_Html\\Ts_practice\\js-test.html"
+        } */
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "attach vuejs: chrome",
+            "urlFilter": "http://localhost:5501/*",
+            "port": 5501,
+            "sourceMaps": true,
+            // "sourceMapPathOverrides": {
+            //   "webpack:///src/*": "${webRoot}/*"
+            // }
+          }
+        
+    ]
+}
